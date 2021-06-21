@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oop.finalproject;
+package oop.classes;
 
 
 public class Car {
@@ -12,16 +12,16 @@ public class Car {
     private String name;
     private String regNo;
     private String ownerId;
-    private int rentPerHour;
-    private int model;
+    private Integer rentPerHour;
+    private Integer model;
     private CarType carType;
-    private int seatingCapacity;
+    private Integer seatingCapacity;
     private CarColor carColor;
     private String condition; 
     
-    //Constructor
+    //parameterized Constructor 
 
-    public Car(String maker, String name, String regNo, String ownerId, int rentPerHour, int model, String carType, int seatingCapacity, String carColor, String condition) {
+    public Car(String maker, String name, String regNo, String ownerId, Integer rentPerHour, Integer model, String carType, Integer seatingCapacity, String carColor, String condition) {
         this.maker = maker;
         this.name = name;
         this.regNo = regNo;
@@ -33,6 +33,8 @@ public class Car {
         this.carColor = Convert_carColor_to_Enum(carColor);
         this.condition = condition;
     }
+    //Non parameterized constructor
+    public Car(){}
     
     //Getters
 
@@ -52,11 +54,11 @@ public class Car {
         return ownerId;
     }
 
-    public int getRentPerHour() {
+    public Integer getRentPerHour() {
         return rentPerHour;
     }
 
-    public int getModel() {
+    public Integer getModel() {
         return model;
     }
 
@@ -64,7 +66,7 @@ public class Car {
         return carType;
     }
 
-    public int getSeatingCapacity() {
+    public Integer getSeatingCapacity() {
         return seatingCapacity;
     }
 
@@ -94,11 +96,11 @@ public class Car {
         this.ownerId = ownerId;
     }
 
-    public void setRentPerHour(int rentPerHour) {
+    public void setRentPerHour(Integer rentPerHour) {
         this.rentPerHour = rentPerHour;
     }
 
-    public void setModel(int model) {
+    public void setModel(Integer model) {
         this.model = model;
     }
 
@@ -106,7 +108,7 @@ public class Car {
         this.carType = carType;
     }
 
-    public void setSeatingCapacity(int seatingCapacity) {
+    public void setSeatingCapacity(Integer seatingCapacity) {
         this.seatingCapacity = seatingCapacity;
     }
 

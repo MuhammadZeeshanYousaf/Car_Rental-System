@@ -5,9 +5,9 @@
  */
 package oop.finalproject;
 
+import oop.classes.CarManagement;
+import oop.classes.Car;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -86,7 +86,7 @@ public class AddCar extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(204, 204, 255));
         jLabel6.setText("Model");
 
-        carType_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sports Car", "Commercial", "Family", "Convertible", "Compact" }));
+        carType_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sports", "Commercial", "Family", "Convertible", "Compact" }));
         carType_comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 carType_comboBoxActionPerformed(evt);
@@ -326,28 +326,35 @@ public class AddCar extends javax.swing.JFrame {
         
         //Get data from input text boxes
         String maker = maker_txtBox.getText();
+        
         String name = name_txtBox.getText();
         String regNo = regNo_txtBox.getText();
         String ownerId = ownerId_txtBox.getText();
         Integer rentPerHour = Integer.parseInt(rent_txtBox.getText());
-        Integer model = Integer.parseInt( model_comboBox.getSelectedItem()+"");
-        String carType = carType_comboBox.getSelectedItem()+"";
-        Integer seatingCapacity = Integer.parseInt(seatingCapacity_txtBox.getToolTipText()+"");
+        System.out.println("XXXXXX: "+ model_comboBox.getSelectedItem());
+        ///------------------ERROR AFTER THIS LINE HERE
+        Integer model = Integer.parseInt(model_comboBox.getSelectedItem().toString());
+        System.out.println("Converted");
+        String carType = carType_comboBox.getSelectedItem().toString();
+        Integer seatingCapacity = Integer.parseInt(seatingCapacity_txtBox.getToolTipText());
+        System.out.println("Converted");
+        System.out.println("YYYYYYY: " + color_comboBox.getToolTipText());
         String carColor = color_comboBox.getToolTipText();
-        String condition = condition_comboBox.getSelectedItem()+"";
+        String condition = condition_comboBox.getSelectedItem().toString();
         
-        //if(maker.isEmpty()||name.isEmpty()||regNo.isEmpty()||ownerId.isEmpty()||rentPerHour<1||model<1||carType.isEmpty()||seatingCapacity<1||carColor.isEmpty()||condition.isEmpty())
-          //  JOptionPane.showMessageDialog(null, "You left any field empty or put invalid value!", "Invalid Input", 1);
-        //else{
-            CarManagment carManage;
+        if(maker.isEmpty()||name.isEmpty()||regNo.isEmpty()||ownerId.isEmpty()||rentPerHour<1||model<1||carType.isEmpty()||seatingCapacity<1||carColor.isEmpty()||condition.isEmpty())
+            JOptionPane.showMessageDialog(null, "You left any field empty or put invalid value!", "Invalid Input", 1);
+        else{
+            Car NewCar = new Car(maker, name, regNo, ownerId, rentPerHour, model, carType, seatingCapacity, carColor, condition);
+            CarManagement carManage;
             try {
-                carManage = new CarManagment(maker, name, regNo, ownerId, rentPerHour, model, carType, seatingCapacity, carColor, condition);
-                if(carManage.AddCar())
+                carManage = new CarManagement();
+                if(carManage.AddCar(NewCar))
                     JOptionPane.showMessageDialog(null, "Car added Successfully!");
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Cars file Error", 1);
             }
-        //}
+        }
     }//GEN-LAST:event_Add_btnActionPerformed
 
     private void model_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_model_comboBoxActionPerformed
@@ -359,40 +366,6 @@ public class AddCar extends javax.swing.JFrame {
         this.setVisible(false);     //Close the Add car form
     }//GEN-LAST:event_Cancel_btnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddCar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddCar().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add_btn;
