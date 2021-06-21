@@ -5,6 +5,11 @@
  */
 package oop.finalproject;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hp
@@ -324,16 +329,25 @@ public class AddCar extends javax.swing.JFrame {
         String name = name_txtBox.getText();
         String regNo = regNo_txtBox.getText();
         String ownerId = ownerId_txtBox.getText();
-        long rentPerHour = Long.parseLong(rent_txtBox.getText());
-        int model = Integer.parseInt((String) model_comboBox.getSelectedItem());
-        String carType = (String) carType_comboBox.getSelectedItem();
-        int seatingCapacity = Integer.parseInt(seatingCapacity_txtBox.getToolTipText());
+        Integer rentPerHour = Integer.parseInt(rent_txtBox.getText());
+        Integer model = Integer.parseInt( model_comboBox.getSelectedItem()+"");
+        String carType = carType_comboBox.getSelectedItem()+"";
+        Integer seatingCapacity = Integer.parseInt(seatingCapacity_txtBox.getToolTipText()+"");
         String carColor = color_comboBox.getToolTipText();
-        String condition = (String) condition_comboBox.getSelectedItem();
+        String condition = condition_comboBox.getSelectedItem()+"";
         
-        
-        
-        
+        //if(maker.isEmpty()||name.isEmpty()||regNo.isEmpty()||ownerId.isEmpty()||rentPerHour<1||model<1||carType.isEmpty()||seatingCapacity<1||carColor.isEmpty()||condition.isEmpty())
+          //  JOptionPane.showMessageDialog(null, "You left any field empty or put invalid value!", "Invalid Input", 1);
+        //else{
+            CarManagment carManage;
+            try {
+                carManage = new CarManagment(maker, name, regNo, ownerId, rentPerHour, model, carType, seatingCapacity, carColor, condition);
+                if(carManage.AddCar())
+                    JOptionPane.showMessageDialog(null, "Car added Successfully!");
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Cars file Error", 1);
+            }
+        //}
     }//GEN-LAST:event_Add_btnActionPerformed
 
     private void model_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_model_comboBoxActionPerformed

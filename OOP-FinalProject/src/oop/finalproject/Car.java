@@ -12,7 +12,7 @@ public class Car {
     private String name;
     private String regNo;
     private String ownerId;
-    private long rentPerHour;
+    private int rentPerHour;
     private int model;
     private CarType carType;
     private int seatingCapacity;
@@ -21,7 +21,7 @@ public class Car {
     
     //Constructor
 
-    public Car(String maker, String name, String regNo, String ownerId, long rentPerHour, int model, String carType, int seatingCapacity, String carColor, String condition) {
+    public Car(String maker, String name, String regNo, String ownerId, int rentPerHour, int model, String carType, int seatingCapacity, String carColor, String condition) {
         this.maker = maker;
         this.name = name;
         this.regNo = regNo;
@@ -52,7 +52,7 @@ public class Car {
         return ownerId;
     }
 
-    public long getRentPerHour() {
+    public int getRentPerHour() {
         return rentPerHour;
     }
 
@@ -94,7 +94,7 @@ public class Car {
         this.ownerId = ownerId;
     }
 
-    public void setRentPerHour(long rentPerHour) {
+    public void setRentPerHour(int rentPerHour) {
         this.rentPerHour = rentPerHour;
     }
 
