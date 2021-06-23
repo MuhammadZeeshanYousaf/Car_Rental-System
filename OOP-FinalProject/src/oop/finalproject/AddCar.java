@@ -22,7 +22,6 @@ public class AddCar extends javax.swing.JFrame {
      */
     Car car;
     public AddCar() {
-        update_btn.setVisible(false);
         initComponents();
     }
     public AddCar(Car carPassed){
@@ -179,6 +178,7 @@ public class AddCar extends javax.swing.JFrame {
         color_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "White", "Black", "Silver", "Grey", "Blue" }));
 
         update_btn.setText("Update");
+		update_btn.setVisible(false);
         update_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 update_btnActionPerformed(evt);
@@ -368,8 +368,10 @@ public class AddCar extends javax.swing.JFrame {
             CarManagement carManage;
             try {
                 carManage = new CarManagement();
-                if(carManage.AddCar(NewCar))
+                if(carManage.AddCar(NewCar)){
                     JOptionPane.showMessageDialog(null, "Car added Successfully!");
+                    this.setVisible(false);
+                }
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Cars file Error", 1);
             }

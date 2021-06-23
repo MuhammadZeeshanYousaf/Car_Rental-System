@@ -145,6 +145,7 @@ public class LogginForm extends javax.swing.JFrame {
         String password = pass_txtBox.getText();
         
         if(userName.equals(Your_userName) && password.equals(Your_password)){
+            this.setVisible(false);
             Form1 form = new Form1();
             form.setVisible(true);
         }

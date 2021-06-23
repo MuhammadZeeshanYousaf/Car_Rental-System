@@ -178,8 +178,10 @@ public class AddCustomer extends javax.swing.JFrame {
             CustomerManagement custManage;
             try {
                 custManage = new CustomerManagement();
-                if(custManage.AddCustomer(NewCustomer))
+                if(custManage.AddCustomer(NewCustomer)){
                     JOptionPane.showMessageDialog(null, "Cusomter added Successfully!");
+                    this.setVisible(false);
+                }
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Customers file Error", 1);
             }
@@ -188,7 +190,7 @@ public class AddCustomer extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-       
+        this.setVisible(false);
     }//GEN-LAST:event_jButton10ActionPerformed
 
 
