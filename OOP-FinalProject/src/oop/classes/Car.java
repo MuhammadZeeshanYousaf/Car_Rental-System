@@ -12,16 +12,16 @@ public class Car {
     private String name;
     private String regNo;
     private String ownerId;
-    private Integer rentPerHour;
-    private Integer model;
+    private String rentPerHour;
+    private String model;
     private CarType carType;
-    private Integer seatingCapacity;
+    private String seatingCapacity;
     private CarColor carColor;
     private String condition; 
     
     //parameterized Constructor 
 
-    public Car(String maker, String name, String regNo, String ownerId, Integer rentPerHour, Integer model, String carType, Integer seatingCapacity, String carColor, String condition) {
+    public Car(String maker, String name, String regNo, String ownerId, String rentPerHour, String model, String carType, String seatingCapacity, String carColor, String condition) {
         this.maker = maker;
         this.name = name;
         this.regNo = regNo;
@@ -54,11 +54,11 @@ public class Car {
         return ownerId;
     }
 
-    public Integer getRentPerHour() {
+    public String getRentPerHour() {
         return rentPerHour;
     }
 
-    public Integer getModel() {
+    public String getModel() {
         return model;
     }
 
@@ -66,7 +66,7 @@ public class Car {
         return carType;
     }
 
-    public Integer getSeatingCapacity() {
+    public String getSeatingCapacity() {
         return seatingCapacity;
     }
 
@@ -96,11 +96,11 @@ public class Car {
         this.ownerId = ownerId;
     }
 
-    public void setRentPerHour(Integer rentPerHour) {
+    public void setRentPerHour(String rentPerHour) {
         this.rentPerHour = rentPerHour;
     }
 
-    public void setModel(Integer model) {
+    public void setModel(String model) {
         this.model = model;
     }
 
@@ -108,7 +108,7 @@ public class Car {
         this.carType = carType;
     }
 
-    public void setSeatingCapacity(Integer seatingCapacity) {
+    public void setSeatingCapacity(String seatingCapacity) {
         this.seatingCapacity = seatingCapacity;
     }
 

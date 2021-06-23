@@ -17,7 +17,7 @@ public class CarManagement extends Car{
     private final Scanner reader;
     
     //parameterized Constructor    
-    public CarManagement(String maker, String name, String regNo, String ownerId, Integer rentPerHour, Integer model, String carType, Integer seatingCapacity, String carColor, String condition) throws IOException {
+    public CarManagement(String maker, String name, String regNo, String ownerId, String rentPerHour, String model, String carType, String seatingCapacity, String carColor, String condition) throws IOException {
         super(maker, name, regNo, ownerId, rentPerHour, model, carType, seatingCapacity, carColor, condition);
         carsFilePath = ".\\files\\cars.txt";
         carsFile = new File(carsFilePath);

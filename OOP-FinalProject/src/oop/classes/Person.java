@@ -56,6 +56,6 @@ public class Person {
     @Override
     public String toString()
     {
-        return cnic+';'+';'+Name+';'+phone;
+        return cnic+';'+Name+';'+phone;
     }
 }

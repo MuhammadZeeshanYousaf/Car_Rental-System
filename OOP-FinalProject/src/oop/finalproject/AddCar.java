@@ -44,8 +44,6 @@ public class AddCar extends javax.swing.JFrame {
         carType_comboBox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        seatingCapacity_txtBox = new javax.swing.JSpinner();
-        color_comboBox = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         condition_comboBox = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
@@ -56,6 +54,8 @@ public class AddCar extends javax.swing.JFrame {
         maker_txtBox = new javax.swing.JTextField();
         regNo_txtBox = new javax.swing.JTextField();
         ownerId_txtBox = new javax.swing.JTextField();
+        color_comboBox = new javax.swing.JComboBox<>();
+        seatingCapacity_txtBox = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,15 +98,6 @@ public class AddCar extends javax.swing.JFrame {
 
         jLabel8.setBackground(new java.awt.Color(204, 204, 255));
         jLabel8.setText("Seating Capacity");
-
-        seatingCapacity_txtBox.setToolTipText("");
-
-        color_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "White", "Black", "Silver", "Grey", "Blue" }));
-        color_comboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                color_comboBoxActionPerformed(evt);
-            }
-        });
 
         jLabel9.setBackground(new java.awt.Color(204, 204, 255));
         jLabel9.setText("Condition");
@@ -167,6 +158,8 @@ public class AddCar extends javax.swing.JFrame {
             }
         });
 
+        color_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "White", "Black", "Silver", "Grey", "Blue" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -181,7 +174,7 @@ public class AddCar extends javax.swing.JFrame {
                 .addGap(103, 103, 103)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 5, Short.MAX_VALUE)
+                        .addGap(0, 8, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel10))
@@ -189,7 +182,7 @@ public class AddCar extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(model_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(color_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
+                        .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jLabel7))
@@ -200,9 +193,9 @@ public class AddCar extends javax.swing.JFrame {
                                 .addComponent(carType_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(56, 56, 56)
                                 .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(seatingCapacity_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(131, 131, 131))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(seatingCapacity_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(138, 138, 138))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -262,10 +255,10 @@ public class AddCar extends javax.swing.JFrame {
                     .addComponent(seatingCapacity_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(color_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(condition_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(color_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Add_btn)
@@ -290,10 +283,6 @@ public class AddCar extends javax.swing.JFrame {
     private void carType_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carType_comboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_carType_comboBoxActionPerformed
-
-    private void color_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_color_comboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_color_comboBoxActionPerformed
 
     private void condition_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_condition_comboBoxActionPerformed
         // TODO add your handling code here:
@@ -326,24 +315,26 @@ public class AddCar extends javax.swing.JFrame {
         
         //Get data from input text boxes
         String maker = maker_txtBox.getText();
-        
         String name = name_txtBox.getText();
         String regNo = regNo_txtBox.getText();
         String ownerId = ownerId_txtBox.getText();
-        Integer rentPerHour = Integer.parseInt(rent_txtBox.getText());
-        System.out.println("XXXXXX: "+ model_comboBox.getSelectedItem());
-        ///------------------ERROR AFTER THIS LINE HERE
-        Integer model = Integer.parseInt(model_comboBox.getSelectedItem().toString());
-        System.out.println("Converted");
+        String rentPerHour = rent_txtBox.getText();
+        String model = model_comboBox.getSelectedItem().toString();
         String carType = carType_comboBox.getSelectedItem().toString();
-        Integer seatingCapacity = Integer.parseInt(seatingCapacity_txtBox.getToolTipText());
-        System.out.println("Converted");
-        System.out.println("YYYYYYY: " + color_comboBox.getToolTipText());
-        String carColor = color_comboBox.getToolTipText();
+        String seatingCapacity = seatingCapacity_txtBox.getValue().toString();
+        String carColor = color_comboBox.getSelectedItem().toString();
         String condition = condition_comboBox.getSelectedItem().toString();
         
-        if(maker.isEmpty()||name.isEmpty()||regNo.isEmpty()||ownerId.isEmpty()||rentPerHour<1||model<1||carType.isEmpty()||seatingCapacity<1||carColor.isEmpty()||condition.isEmpty())
+        System.out.println("VALUES: " + maker+','+ name+','+ regNo+',' + ownerId+','+ rentPerHour+','+model+','+carType+','+seatingCapacity+','+carColor+','+condition);
+       //Check input texts for wrong inputs
+        if(maker.isEmpty()||name.isEmpty()||regNo.isEmpty()||ownerId.isEmpty()||rentPerHour.isEmpty()||seatingCapacity.isEmpty()){
+            try{
+                Integer.parseInt(rentPerHour);  //Discard
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Invalid Rent Input", 1);
+            }
             JOptionPane.showMessageDialog(null, "You left any field empty or put invalid value!", "Invalid Input", 1);
+        }
         else{
             Car NewCar = new Car(maker, name, regNo, ownerId, rentPerHour, model, carType, seatingCapacity, carColor, condition);
             CarManagement carManage;
