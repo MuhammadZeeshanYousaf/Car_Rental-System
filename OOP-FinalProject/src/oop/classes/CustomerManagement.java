@@ -6,7 +6,6 @@
 package oop.classes;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +17,11 @@ import javax.swing.JOptionPane;
  * @author Zeeshan
  */
 public class CustomerManagement extends Person{
-    private final String customersFilePath;
+    ////Paths to store data files
+    private final String customersFilePath = ".\\data_files\\customers.txt";
+    private final String directoryPath = ".\\data_files";
+    //File declarations
+    private final File theDirectory;  //to make directory ""data_files" if not exists
     private final File customersFile;
     private final FileWriter pen;
     private final Scanner reader;
@@ -27,7 +30,8 @@ public class CustomerManagement extends Person{
 
     public CustomerManagement(String cnic, String Name, String phone) throws IOException {
         super(cnic, Name, phone);
-        customersFilePath = ".\\files\\customers.txt";
+        theDirectory = new File(directoryPath);
+        theDirectory.mkdir();   //if files directory not exists then create one
         customersFile = new File(customersFilePath);
         customersFile.createNewFile();
         pen = new FileWriter(customersFile, true);
@@ -36,8 +40,8 @@ public class CustomerManagement extends Person{
     
     //non-parameterized constructor
     public CustomerManagement() throws IOException {
-        super();
-        customersFilePath = ".\\files\\customers.txt";
+        theDirectory = new File(directoryPath);
+        theDirectory.mkdir();   //if files directory not exists then create one
         customersFile = new File(customersFilePath);
         customersFile.createNewFile();
         pen = new FileWriter(customersFile, true);

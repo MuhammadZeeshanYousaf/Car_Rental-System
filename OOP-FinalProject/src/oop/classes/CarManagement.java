@@ -10,16 +10,20 @@ import javax.swing.JOptionPane;
 
 
 public class CarManagement extends Car{
-    
-    private final String carsFilePath;
+    //Paths to store data files
+    private final String carsFilePath = ".\\data_files\\cars.txt";
+    private final String directoryPath = ".\\data_files";
+    //File declarations
+    private final File theDirectory;  //to make directory ""data_files" if not exists
     private final File carsFile;
     private final FileWriter pen;
-    private final Scanner reader;
+    private final Scanner reader;   //file reader 
     
     //parameterized Constructor    
     public CarManagement(String maker, String name, String regNo, String ownerId, String rentPerHour, String model, String carType, String seatingCapacity, String carColor, String condition) throws IOException {
         super(maker, name, regNo, ownerId, rentPerHour, model, carType, seatingCapacity, carColor, condition);
-        carsFilePath = ".\\files\\cars.txt";
+        theDirectory = new File(directoryPath);
+        theDirectory.mkdir();       //if files directory not exists then create one
         carsFile = new File(carsFilePath);
         carsFile.createNewFile();
         pen = new FileWriter(carsFile, true);
@@ -27,8 +31,8 @@ public class CarManagement extends Car{
     }
     //Non parameterized constructor
     public CarManagement() throws IOException{
-        super();
-        carsFilePath = ".\\files\\cars.txt";
+        theDirectory = new File(directoryPath);
+        theDirectory.mkdir();       //if files directory not exists then create one
         carsFile = new File(carsFilePath);
         carsFile.createNewFile();
         pen = new FileWriter(carsFile, true);
