@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import jdk.jfr.events.FileWriteEvent;
 
 
 public class CarManagement extends Car{
@@ -55,7 +56,9 @@ public class CarManagement extends Car{
     }
     
     public boolean RemoveCar(String regNo){
-        //this method will remove the data of that car which have registeration no "regNo"
+        /**
+         * this method will remove the data of that car which have registeration no "regNo"
+        **/
         
         //Array which will have all the file data 
         ArrayList<String> dataArr = new ArrayList<>();
@@ -73,13 +76,17 @@ public class CarManagement extends Car{
             {
                 //here we found the regNo
                 try {
-                    pen.flush();    //first remove the existing data
+                    //first remove the existing data
+                    try (FileWriter makeFileEmpty = new FileWriter(carsFile, false)) {
+                        makeFileEmpty.flush();
+                        makeFileEmpty.close();
+                    }
                     
                     //Now write all the data of cars except this car
-                    for(int i = 0; i < dataArr.size(); i++)
+                    for(int i = 0; i < dataArr.size(); i++){
                         if(i != index)  //this will skip the data of the car to remove
                             pen.write(dataArr.get(i)+'\n');
-                    
+                    }
                     pen.close();
                 }
                 catch(IOException ex)
@@ -91,6 +98,7 @@ public class CarManagement extends Car{
             }
             index++;
         }
+        dataArr.clear();
         return false;
     }
     
