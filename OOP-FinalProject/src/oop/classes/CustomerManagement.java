@@ -82,7 +82,12 @@ public class CustomerManagement extends Person{
             {
                 //here we found the cnic
                 try {
-                    pen.flush();    //first remove the existing data from file
+                    
+                   //first remove the existing data from file
+                    try (FileWriter makeFileEmpty = new FileWriter(customersFile, false)) {
+                        makeFileEmpty.flush();
+                        makeFileEmpty.close();
+                    }
                     
                     //Now write all the data of cars except this car
                     for(int i = 0; i < customer_dataArr.size(); i++)
@@ -100,6 +105,7 @@ public class CustomerManagement extends Person{
             }
             index++;
         }
+        JOptionPane.showMessageDialog(null, "Customer not found!");
         return false;
     }
 }

@@ -5,8 +5,7 @@
  */
 package oop.finalproject;
 
-import java.io.File;
-import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -22,12 +21,7 @@ public class main{
         // TODO code application logic here
         LogginForm form = new LogginForm();
         form.setVisible(true);
-//        
-//        ArrayList<String> ar  = new ArrayList<>();
-//        ar.add("hello");
-//        System.out.println("First element: "+ ar.get(0));
-//        System.out.println("Size: "  + ar.size());
-        
+        //JOptionPane.showMessageDialog(null, "Hello msg", "Car File Error", 0);
         
 //        String maker = "Suzuki";
 //        String name = "Cultus";

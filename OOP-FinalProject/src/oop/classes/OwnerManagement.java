@@ -17,7 +17,11 @@ import javax.swing.JOptionPane;
  * @author Zeeshan
  */
 public class OwnerManagement extends Person{
-    private final String ownersFilePath;
+    ////Paths to store data files
+    private final String ownersFilePath = ".\\data_files\\owners.txt";
+    private final String directoryPath = ".\\data_files";
+    //File declarations
+    private final File theDirectory;  //to make directory ""data_files" if not exists
     private final File ownersFile;
     private final FileWriter pen;
     private final Scanner reader;
@@ -26,7 +30,8 @@ public class OwnerManagement extends Person{
 
     public OwnerManagement(String cnic, String Name, String phone) throws IOException {
         super(cnic, Name, phone);
-        ownersFilePath = ".\\files\\owners.txt";
+        theDirectory = new File(directoryPath);
+        theDirectory.mkdir();   //if files directory not exists then create one
         ownersFile = new File(ownersFilePath);
         ownersFile.createNewFile();
         pen = new FileWriter(ownersFile, true);
@@ -35,8 +40,8 @@ public class OwnerManagement extends Person{
     
     //non-parameterized constructor
     public OwnerManagement() throws IOException {
-        super();
-        ownersFilePath = ".\\files\\owners.txt";
+        theDirectory = new File(directoryPath);
+        theDirectory.mkdir();   //if files directory not exists then create one
         ownersFile = new File(ownersFilePath);
         ownersFile.createNewFile();
         pen = new FileWriter(ownersFile, true);
@@ -45,7 +50,7 @@ public class OwnerManagement extends Person{
     
     //Methods to perform CRUD Operations
 
-    public boolean AddCustomer(Person owner)
+    public boolean AddOwner(Person owner)
     {
         //This method write the customers attributes into the file named "customers.txt"
         try {
@@ -58,7 +63,7 @@ public class OwnerManagement extends Person{
         return false;
     }
     
-    public boolean RemoveCustomer(String cnic){
+    public boolean RemoveOwner(String cnic){
         //this method will remove the data of that customer which have cnic "cnic"
         
         //Array which will have all the file data 
@@ -77,13 +82,17 @@ public class OwnerManagement extends Person{
             {
                 //here we found the cnic
                 try {
-                    pen.flush();    //first remove the existing data from file
+                     //first remove the existing data from file
+                    try (FileWriter makeFileEmpty = new FileWriter(ownersFile, false)) {
+                        makeFileEmpty.flush();
+                        makeFileEmpty.close();
+                    }
                     
                     //Now write all the data of cars except this car
-                    for(int i = 0; i < owner_dataArr.size(); i++)
+                    for(int i = 0; i < owner_dataArr.size(); i++){
                         if(i != index)  //this will skip the data of the customer to remove
                             pen.write(owner_dataArr.get(i)+'\n');
-                    
+                    }
                     pen.close();
                 }
                 catch(IOException ex)
@@ -95,6 +104,7 @@ public class OwnerManagement extends Person{
             }
             index++;
         }
+        JOptionPane.showMessageDialog(null, "Owner not found!");
         return false;
     }
 }

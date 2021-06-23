@@ -184,8 +184,6 @@ public class AddCustomer extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Customers file Error", 1);
             }
         }
-        //AddCar form = new AddCar();
-        //form.setVisible(true);
     }//GEN-LAST:event_add_btnActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

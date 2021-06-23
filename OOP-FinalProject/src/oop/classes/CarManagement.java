@@ -98,8 +98,92 @@ public class CarManagement extends Car{
             }
             index++;
         }
-        dataArr.clear();
+        JOptionPane.showMessageDialog(null, "Car not found!");
         return false;
     }
     
+    public Car FindCar(String regNo_or_Name, boolean isRegNoPassed)
+    {  
+        //if Registeration number passed then we search registeration number
+        //car Name Index = 1;
+        //reg No Index = 2;
+        
+        //if Registeration number passed then we will use index = 2 and vice versa
+        final int storedIndex = (isRegNoPassed)? 2 : 1;
+        
+        //Array which will have all the file data 
+        ArrayList<String> dataArr = new ArrayList<>();
+        //read all the data from file
+        while(reader.hasNext()){
+            dataArr.add(reader.nextLine());
+        }
+        reader.close();
+        //traverse all from data
+        int index = 0;
+        for(String line : dataArr)
+        {
+            String[] carString = line.split(";");
+            if(carString[storedIndex].equalsIgnoreCase(regNo_or_Name))
+            {
+                //Retreive car data and make Car
+                return new Car(carString[0],carString[1],carString[2],carString[3],carString[4],carString[5],carString[6],carString[7],carString[8],carString[9]);
+            }
+            index++;
+        }
+        return null;
+    }
+    
+    //Update car by finding car with Registeration number
+    public boolean UpdateCar(String regNo_or_Name, Car updatedCar, boolean isRegNoPassed)
+    {
+        //if Registeration number passed then we search registeration number
+        //car Name Index = 1;
+        //reg No Index = 2;
+        
+        //if Registeration number passed then we will use index = 2 and vice versa
+        final int storedIndex = (isRegNoPassed)? 2 : 1;
+        
+        //Array which will have all the file data 
+        ArrayList<String> dataArr = new ArrayList<>();
+        //read all the data from file
+        while(reader.hasNext()){
+            dataArr.add(reader.nextLine());
+        }
+        reader.close();
+        
+        //now find the data of the car which have registeration no "regNo"
+        int index = 0;
+        for(String line : dataArr)
+        {
+            if(line.split(";")[storedIndex].equalsIgnoreCase(regNo_or_Name))
+            {
+                //here we found the regNo
+                try {
+                    //first remove the existing data
+                    try (FileWriter makeFileEmpty = new FileWriter(carsFile, false)) {
+                        makeFileEmpty.flush();
+                        makeFileEmpty.close();
+                    }
+                    
+                    //Now write all the data of cars except this car
+                    for(int i = 0; i < dataArr.size(); i++){
+                        if(i == index)  //this will skip the data of the car to remove
+                            pen.write(updatedCar.toString()+'\n');
+                        else
+                            pen.write(dataArr.get(i)+'\n');
+                    }
+                    pen.close();
+                }
+                catch(IOException ex)
+                {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Car cannot be removed", 1);
+                    return false;
+                }
+               return true;
+            }
+            index++;
+        }
+        JOptionPane.showMessageDialog(null, "Car not found!");
+        return false;
+    }
 }

@@ -6,7 +6,10 @@
 package oop.finalproject;
 import oop.classes.CarManagement;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import oop.classes.Car;
 /**
  *
  * @author Hp
@@ -39,7 +42,7 @@ public class Form1 extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        updateCar_btn = new javax.swing.JButton();
         removeCar_btn = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -54,9 +57,9 @@ public class Form1 extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
-        jButton14 = new javax.swing.JButton();
+        addOwner_Btn = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
+        removeOwnerBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -152,10 +155,10 @@ public class Form1 extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Update Car");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        updateCar_btn.setText("Update Car");
+        updateCar_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                updateCar_btnActionPerformed(evt);
             }
         });
 
@@ -178,7 +181,7 @@ public class Form1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateCar_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(removeCar_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -190,7 +193,7 @@ public class Form1 extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addComponent(jButton2)
                 .addGap(39, 39, 39)
-                .addComponent(jButton3)
+                .addComponent(updateCar_btn)
                 .addGap(42, 42, 42)
                 .addComponent(removeCar_btn)
                 .addGap(39, 39, 39)
@@ -315,10 +318,10 @@ public class Form1 extends javax.swing.JFrame {
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton14.setText("Add Car Owner");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        addOwner_Btn.setText("Add Car Owner");
+        addOwner_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                addOwner_BtnActionPerformed(evt);
             }
         });
 
@@ -329,10 +332,10 @@ public class Form1 extends javax.swing.JFrame {
             }
         });
 
-        jButton16.setText("Remove Car Owner");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
+        removeOwnerBtn.setText("Remove Car Owner");
+        removeOwnerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+                removeOwnerBtnActionPerformed(evt);
             }
         });
 
@@ -344,20 +347,20 @@ public class Form1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addOwner_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton16))
+                    .addComponent(removeOwnerBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addComponent(jButton14)
+                .addComponent(addOwner_Btn)
                 .addGap(74, 74, 74)
                 .addComponent(jButton15)
                 .addGap(71, 71, 71)
-                .addComponent(jButton16)
+                .addComponent(removeOwnerBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -633,11 +636,22 @@ public class Form1 extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void updateCar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCar_btnActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showInputDialog(null,"Enter The Car Id To Be Updated", "Update Car", JOptionPane.QUESTION_MESSAGE);
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
+        String regNo = JOptionPane.showInputDialog(null,"Enter The Car Reg No. To Be Updated", "Update Car", JOptionPane.QUESTION_MESSAGE);
+        Car carFound = null;
+        try {
+            carFound = new CarManagement().FindCar(regNo, true);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Cars File Error", 2);
+        }
+        if(carFound != null){
+            System.out.println("Reached ********");
+            new AddCar(carFound).setVisible(true);      //ERROR IN THIS LINE-----------------------------**************
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Car Not Found");
+    }//GEN-LAST:event_updateCar_btnActionPerformed
 
     private void removeCar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCar_btnActionPerformed
         // TODO add your handling code here:
@@ -656,11 +670,11 @@ public class Form1 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_removeCar_btnActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void addOwner_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOwner_BtnActionPerformed
         // TODO add your handling code here:
         AddOwner form = new AddOwner();
         form.setVisible(true);
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_addOwner_BtnActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
@@ -668,11 +682,11 @@ public class Form1 extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_jButton15ActionPerformed
 
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+    private void removeOwnerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeOwnerBtnActionPerformed
         // TODO add your handling code here:
         DeleteOwner form = new DeleteOwner();
         form.setVisible(true);
-    }//GEN-LAST:event_jButton16ActionPerformed
+    }//GEN-LAST:event_removeOwnerBtnActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
@@ -698,18 +712,16 @@ public class Form1 extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addOwner_Btn;
     private javax.swing.JButton exit_btn;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -741,5 +753,7 @@ public class Form1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton removeCar_btn;
+    private javax.swing.JButton removeOwnerBtn;
+    private javax.swing.JButton updateCar_btn;
     // End of variables declaration//GEN-END:variables
 }

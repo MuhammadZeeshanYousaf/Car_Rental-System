@@ -5,6 +5,10 @@
  */
 package oop.finalproject;
 
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import oop.classes.OwnerManagement;
+
 /**
  *
  * @author Hp
@@ -29,9 +33,9 @@ public class DeleteOwner extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        ownerCnic_txtBox = new javax.swing.JTextField();
+        deleteOwner_btn = new javax.swing.JButton();
+        cancel_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,31 +44,30 @@ public class DeleteOwner extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Enter ID To Be Deleted");
+        jLabel2.setText("Enter CNIC To Be Deleted");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        ownerCnic_txtBox.setForeground(new java.awt.Color(0, 0, 0));
+        ownerCnic_txtBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                ownerCnic_txtBoxActionPerformed(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(204, 204, 255));
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setText("Delete");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        deleteOwner_btn.setBackground(new java.awt.Color(204, 204, 255));
+        deleteOwner_btn.setForeground(new java.awt.Color(0, 0, 0));
+        deleteOwner_btn.setText("Delete");
+        deleteOwner_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                deleteOwner_btnActionPerformed(evt);
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(204, 204, 255));
-        jButton10.setForeground(new java.awt.Color(0, 0, 0));
-        jButton10.setText("Cancel");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        cancel_btn.setBackground(new java.awt.Color(204, 204, 255));
+        cancel_btn.setForeground(new java.awt.Color(0, 0, 0));
+        cancel_btn.setText("Cancel");
+        cancel_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                cancel_btnActionPerformed(evt);
             }
         });
 
@@ -74,16 +77,16 @@ public class DeleteOwner extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(deleteOwner_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancel_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(jLabel2)
                 .addGap(56, 56, 56)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 158, Short.MAX_VALUE))
+                .addComponent(ownerCnic_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 98, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,11 +94,11 @@ public class DeleteOwner extends javax.swing.JFrame {
                 .addGap(161, 161, 161)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ownerCnic_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton10))
+                    .addComponent(deleteOwner_btn)
+                    .addComponent(cancel_btn))
                 .addGap(30, 30, 30))
         );
 
@@ -113,27 +116,41 @@ public class DeleteOwner extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void ownerCnic_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerCnic_txtBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_ownerCnic_txtBoxActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void deleteOwner_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOwner_btnActionPerformed
         // TODO add your handling code here:
-        AddCar form = new AddCar();
-        form.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+        //--------DELETE OWNER----------
+        String Ownercnic = ownerCnic_txtBox.getText();
+        if(Ownercnic.isEmpty()){
+            return;
+        }
+        // else continue removal process
+        try {
+            OwnerManagement ownerManage = new OwnerManagement();
+            //Now call the function to remove
+            if(ownerManage.RemoveOwner(Ownercnic)){
+                JOptionPane.showMessageDialog(null, "Owner removed Successfully!");
+                this.setVisible(false);
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Owners file Error", 1);
+        }
+    }//GEN-LAST:event_deleteOwner_btnActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
         // TODO add your handling code here:
-
-    }//GEN-LAST:event_jButton10ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_cancel_btnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton cancel_btn;
+    private javax.swing.JButton deleteOwner_btn;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField ownerCnic_txtBox;
     // End of variables declaration//GEN-END:variables
 }

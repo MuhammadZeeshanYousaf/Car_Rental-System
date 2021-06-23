@@ -74,7 +74,7 @@ public class Car {
         return carColor;
     }
 
-    public String isCondition() {
+    public String getCondition() {
         return condition;
     }
     

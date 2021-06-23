@@ -20,8 +20,25 @@ public class AddCar extends javax.swing.JFrame {
     /**
      * Creates new form AddCar
      */
+    Car car;
     public AddCar() {
+        update_btn.setVisible(false);
         initComponents();
+    }
+    public AddCar(Car carPassed){
+        initComponents();
+        car = carPassed;
+        maker_txtBox.setText(car.getMaker());
+        name_txtBox.setText(car.getName());
+        regNo_txtBox.setText(car.getRegNo());
+        ownerId_txtBox.setText(car.getOwnerId());
+        rent_txtBox.setText(car.getRentPerHour());
+        model_comboBox.setToolTipText(car.getModel());
+        carType_comboBox.setToolTipText(car.getCarType()+"");
+        seatingCapacity_txtBox.setValue(car.getSeatingCapacity());
+        color_comboBox.setToolTipText(car.getCarColor()+"");
+        condition_comboBox.setToolTipText(car.getCondition());
+        update_btn.setVisible(true);
     }
 
     /**
@@ -56,6 +73,7 @@ public class AddCar extends javax.swing.JFrame {
         ownerId_txtBox = new javax.swing.JTextField();
         color_comboBox = new javax.swing.JComboBox<>();
         seatingCapacity_txtBox = new javax.swing.JSpinner();
+        update_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,12 +178,21 @@ public class AddCar extends javax.swing.JFrame {
 
         color_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "White", "Black", "Silver", "Grey", "Blue" }));
 
+        update_btn.setText("Update");
+        update_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(update_btn)
+                .addGap(18, 18, 18)
                 .addComponent(Add_btn)
                 .addGap(18, 18, 18)
                 .addComponent(Cancel_btn)
@@ -262,7 +289,8 @@ public class AddCar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Add_btn)
-                    .addComponent(Cancel_btn))
+                    .addComponent(Cancel_btn)
+                    .addComponent(update_btn))
                 .addGap(25, 25, 25))
         );
 
@@ -357,6 +385,11 @@ public class AddCar extends javax.swing.JFrame {
         this.setVisible(false);     //Close the Add car form
     }//GEN-LAST:event_Cancel_btnActionPerformed
 
+    private void update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_btnActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Updated");
+    }//GEN-LAST:event_update_btnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add_btn;
@@ -382,5 +415,6 @@ public class AddCar extends javax.swing.JFrame {
     private javax.swing.JTextField regNo_txtBox;
     private javax.swing.JTextField rent_txtBox;
     private javax.swing.JSpinner seatingCapacity_txtBox;
+    private javax.swing.JButton update_btn;
     // End of variables declaration//GEN-END:variables
 }
