@@ -646,11 +646,10 @@ public class Form1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Cars File Error", 2);
         }
         if(carFound != null){
-            System.out.println("Reached ********");
-            new AddCar(carFound).setVisible(true);      //ERROR IN THIS LINE-----------------------------**************
+            JOptionPane.showMessageDialog(null, "Car Updated");
         }
         else
-            JOptionPane.showMessageDialog(null, "Car Not Found");
+            JOptionPane.showMessageDialog(null, "Car Not Found!");
     }//GEN-LAST:event_updateCar_btnActionPerformed
 
     private void removeCar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCar_btnActionPerformed

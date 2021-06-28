@@ -10,6 +10,8 @@ package oop.classes;
  * @author Zeeshan
  */
 public class Person {
+    //This class is used for both owner and customer
+    
     private String cnic;
     private String Name;
     private String phone;

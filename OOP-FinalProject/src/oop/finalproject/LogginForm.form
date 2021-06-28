@@ -159,8 +159,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="userName_txtBox">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="user"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="pass_txtBox">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="password"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="submit_btn">
           <Properties>

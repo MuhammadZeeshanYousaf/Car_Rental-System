@@ -5,6 +5,13 @@
  */
 package oop.finalproject;
 
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import oop.classes.Car;
+import oop.classes.CarManagement;
+import oop.classes.CustomerManagement;
+import oop.classes.Person;
+
 /**
  *
  * @author Hp
@@ -29,9 +36,9 @@ public class UpdateCustomer extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        customerCnic_txtBox = new javax.swing.JTextField();
+        ok_btn = new javax.swing.JButton();
+        cancel_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,29 +49,28 @@ public class UpdateCustomer extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Enter ID To Be Updated");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        customerCnic_txtBox.setForeground(new java.awt.Color(0, 0, 0));
+        customerCnic_txtBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                customerCnic_txtBoxActionPerformed(evt);
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(204, 204, 255));
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setText("OK");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        ok_btn.setBackground(new java.awt.Color(204, 204, 255));
+        ok_btn.setForeground(new java.awt.Color(0, 0, 0));
+        ok_btn.setText("OK");
+        ok_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                ok_btnActionPerformed(evt);
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(204, 204, 255));
-        jButton10.setForeground(new java.awt.Color(0, 0, 0));
-        jButton10.setText("Cancel");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        cancel_btn.setBackground(new java.awt.Color(204, 204, 255));
+        cancel_btn.setForeground(new java.awt.Color(0, 0, 0));
+        cancel_btn.setText("Cancel");
+        cancel_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                cancel_btnActionPerformed(evt);
             }
         });
 
@@ -74,15 +80,15 @@ public class UpdateCustomer extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ok_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancel_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(jLabel2)
                 .addGap(56, 56, 56)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(customerCnic_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 150, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -91,11 +97,11 @@ public class UpdateCustomer extends javax.swing.JFrame {
                 .addGap(161, 161, 161)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(customerCnic_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton10))
+                    .addComponent(ok_btn)
+                    .addComponent(cancel_btn))
                 .addGap(30, 30, 30))
         );
 
@@ -113,26 +119,38 @@ public class UpdateCustomer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void customerCnic_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerCnic_txtBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_customerCnic_txtBoxActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        AddCar form = new AddCar();
-        form.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+    private void ok_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_btnActionPerformed
+        String cnic = customerCnic_txtBox.getText();
         
-    }//GEN-LAST:event_jButton10ActionPerformed
+        Person customerFound = null;
+        try{
+            customerFound = new CustomerManagement().FindCustomer(cnic);
+        } catch (IOException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Customers File Error", 2);
+        }
+        if(customerFound != null){
+            JOptionPane.showMessageDialog(null, "Customer Updated");
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Customer Not Found!");
+        
+        
+    }//GEN-LAST:event_ok_btnActionPerformed
+
+    private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_cancel_btnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton cancel_btn;
+    private javax.swing.JTextField customerCnic_txtBox;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton ok_btn;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,11 @@
  */
 package oop.finalproject;
 
+import java.io.IOException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import oop.classes.Car;
+import oop.classes.CarManagement;
 
 /**
  *
@@ -30,70 +34,51 @@ public class CarDetails extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        regNo_txtBox = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        name_txtBox = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        carDetails_jTable = new javax.swing.JTable();
+        searchByRegNo_btn = new javax.swing.JButton();
+        CarRegNo_txtBox = new javax.swing.JTextField();
+        searchByName_btn = new javax.swing.JButton();
+        CarName_txtBox = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         logOut_btn = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        carDetails_jTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
-        jButton4.setBackground(new java.awt.Color(204, 204, 255));
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Search RegNo:");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        searchByRegNo_btn.setBackground(new java.awt.Color(204, 204, 255));
+        searchByRegNo_btn.setForeground(new java.awt.Color(0, 0, 0));
+        searchByRegNo_btn.setText("Search RegNo:");
+        searchByRegNo_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                searchByRegNo_btnActionPerformed(evt);
             }
         });
 
-        regNo_txtBox.addActionListener(new java.awt.event.ActionListener() {
+        CarRegNo_txtBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regNo_txtBoxActionPerformed(evt);
+                CarRegNo_txtBoxActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(204, 204, 255));
-        jButton5.setForeground(new java.awt.Color(0, 0, 0));
-        jButton5.setText("Search Name:");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        searchByName_btn.setBackground(new java.awt.Color(204, 204, 255));
+        searchByName_btn.setForeground(new java.awt.Color(0, 0, 0));
+        searchByName_btn.setText("Search Name:");
+        searchByName_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                searchByName_btnActionPerformed(evt);
             }
         });
 
-        name_txtBox.addActionListener(new java.awt.event.ActionListener() {
+        CarName_txtBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                name_txtBoxActionPerformed(evt);
+                CarName_txtBoxActionPerformed(evt);
             }
         });
-
-        carDetails_jTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Maker", "Name", "Color", "Type", "Seats", "Model", "Condition", "RegNo", "Rent Per Hour"
-            }
-        ));
-        jScrollPane1.setViewportView(carDetails_jTable);
 
         jButton6.setBackground(new java.awt.Color(204, 204, 255));
         jButton6.setForeground(new java.awt.Color(0, 0, 0));
@@ -113,12 +98,12 @@ public class CarDetails extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setBackground(new java.awt.Color(204, 204, 255));
-        jButton9.setForeground(new java.awt.Color(0, 0, 0));
-        jButton9.setText("Back");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        back.setBackground(new java.awt.Color(204, 204, 255));
+        back.setForeground(new java.awt.Color(0, 0, 0));
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
 
@@ -140,24 +125,28 @@ public class CarDetails extends javax.swing.JFrame {
             }
         });
 
+        carDetails_jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Maker", "Name", "Color", "Type", "Seats", "Model", "Condition", "Reg No", "Rent per Hour"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(carDetails_jTable);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(name_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(regNo_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(248, 248, 248)
                 .addComponent(jButton6)
@@ -165,32 +154,46 @@ public class CarDetails extends javax.swing.JFrame {
                 .addComponent(jButton11)
                 .addGap(27, 27, 27)
                 .addComponent(jButton10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(back)
                 .addGap(18, 18, 18)
                 .addComponent(logOut_btn)
                 .addGap(37, 37, 37))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(searchByRegNo_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchByName_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CarName_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CarRegNo_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(regNo_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchByRegNo_btn)
+                    .addComponent(CarRegNo_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(name_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                    .addComponent(searchByName_btn)
+                    .addComponent(CarName_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logOut_btn)
                     .addComponent(jButton6)
                     .addComponent(jButton10)
                     .addComponent(jButton11)
-                    .addComponent(jButton9))
+                    .addComponent(back))
                 .addGap(14, 14, 14))
         );
 
@@ -198,7 +201,9 @@ public class CarDetails extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,22 +212,55 @@ public class CarDetails extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private int id = 0;
+    private void searchByRegNo_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByRegNo_btnActionPerformed
+        //Search Car by registeration number
+        String regNo = CarRegNo_txtBox.getText();
+        Car carFound = null;
+        try {
+            carFound = new CarManagement().FindCar(regNo, true);        //parameter true is passed because car is to find with regNo, if false then carName must be passed
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Cars File Error", 2);
+        }
+        if(carFound != null){
+            //JOptionPane.showMessageDialog(null, "Car Found");
+            String[] data = {++id+"", carFound.getMaker(), carFound.getName(), carFound.getCarColor()+"", carFound.getCarType()+"", carFound.getSeatingCapacity(), carFound.getModel(), carFound.getCondition(), carFound.getRegNo(), carFound.getRentPerHour()};
+            DefaultTableModel tabelModel = (DefaultTableModel)carDetails_jTable.getModel();
+            tabelModel.addRow(data);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Car Not Found!");
+        
+        
+    }//GEN-LAST:event_searchByRegNo_btnActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void CarRegNo_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarRegNo_txtBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_CarRegNo_txtBoxActionPerformed
 
-    private void regNo_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regNo_txtBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_regNo_txtBoxActionPerformed
+    private void searchByName_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByName_btnActionPerformed
+        //Search Car by Name
+        String carName = CarName_txtBox.getText();
+        Car carFound = null;
+        try {
+            carFound = new CarManagement().FindCar(carName, false);        //parameter false is passed because car is to find with name, if false then regNo must be passed
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Cars File Error", 2);
+        }
+        if(carFound != null){
+            //JOptionPane.showMessageDialog(null, "Car Found");
+            String[] data = {++id+"", carFound.getMaker(), carFound.getName(), carFound.getCarColor()+"", carFound.getCarType()+"", carFound.getSeatingCapacity(), carFound.getModel(), carFound.getCondition(), carFound.getRegNo(), carFound.getRentPerHour()};
+            DefaultTableModel tabelModel = (DefaultTableModel)carDetails_jTable.getModel();
+            tabelModel.addRow(data);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Car Not Found!");
+        
+    }//GEN-LAST:event_searchByName_btnActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void CarName_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarName_txtBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void name_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_txtBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_name_txtBoxActionPerformed
+    }//GEN-LAST:event_CarName_txtBoxActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -233,21 +271,29 @@ public class CarDetails extends javax.swing.JFrame {
     private void logOut_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOut_btnActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new Form1().setVisible(false);
         new LogginForm().setVisible(true);
         
     }//GEN-LAST:event_logOut_btnActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
-        Form1 form = new Form1();
-        form.setVisible(true);
-    }//GEN-LAST:event_jButton9ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_backActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showInputDialog(null,"Enter the Car Reg No to be Removed", "Remove Car", JOptionPane.QUESTION_MESSAGE);
-        
+        String regNo = JOptionPane.showInputDialog(null,"Enter the Car Reg No to be Removed", "Remove Car", JOptionPane.QUESTION_MESSAGE);
+        if(regNo.isEmpty())
+            return;
+        // else continue removal process
+        try {
+            CarManagement carManage = new CarManagement();
+            //Now call the function to remove
+            if(carManage.RemoveCar(regNo))
+                JOptionPane.showMessageDialog(null, "Car removed Successfully!");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Cars file Error", 1);
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -258,17 +304,17 @@ public class CarDetails extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CarName_txtBox;
+    private javax.swing.JTextField CarRegNo_txtBox;
+    private javax.swing.JButton back;
     private javax.swing.JTable carDetails_jTable;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton9;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logOut_btn;
-    private javax.swing.JTextField name_txtBox;
-    private javax.swing.JTextField regNo_txtBox;
+    private javax.swing.JButton searchByName_btn;
+    private javax.swing.JButton searchByRegNo_btn;
     // End of variables declaration//GEN-END:variables
 }

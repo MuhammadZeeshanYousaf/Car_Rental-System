@@ -108,4 +108,44 @@ public class CustomerManagement extends Person{
         JOptionPane.showMessageDialog(null, "Customer not found!");
         return false;
     }
+    
+    //returns customer
+    public Person FindCustomer(String Cnic)
+    {   
+        //Array which will have all the customers file data 
+        ArrayList<String> dataArr = new ArrayList<>();
+        //read all the data from file
+        while(reader.hasNext()){
+            dataArr.add(reader.nextLine());
+        }
+        reader.close();
+        //traverse all from data
+        for(String line : dataArr)
+        {
+            String[] custString = line.split(";");
+            if(custString[0].equals(Cnic))
+            {
+                //Retreive car data and make Car
+                return new Person(custString[0],custString[1],custString[2]);
+            }
+        }
+        return null;
+    }
+    
+    //Return all available customer cnic and names 
+    public String[][] getAllCustomers_id_name()
+    {
+        String[][] cust_id_name = new String[0x64][2];      //2D array to store id and name of the every customer in every row
+        int rowIndex = 0;
+        String[] readLine; //temporary array to store read line 
+        
+        while(reader.hasNext()){
+            readLine = reader.nextLine().split(";");
+            cust_id_name[rowIndex][0] = readLine[0];    //save the cnic of the customer
+            cust_id_name[rowIndex][1] = readLine[1];    //save the name of the customer
+            rowIndex++;
+        }
+        reader.close();
+        return cust_id_name;
+    }
 }

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
-import jdk.jfr.events.FileWriteEvent;
 
 
 public class CarManagement extends Car{
@@ -185,5 +184,22 @@ public class CarManagement extends Car{
         }
         JOptionPane.showMessageDialog(null, "Car not found!");
         return false;
+    }
+    
+    
+    //Find all available car names
+    public String[] getAllCarNames()
+    {
+        String[] namesArray = new String[0x64];
+        int index = 0;
+        String[] readLine;
+        
+        while(reader.hasNext()){
+            readLine = reader.nextLine().split(";");
+            namesArray[index] = readLine[0] + readLine[1];  //save names in format [maker name] in the names array
+            index++;
+        }
+        reader.close();
+        return namesArray;
     }
 }
