@@ -196,7 +196,7 @@ public class CarManagement extends Car{
         
         while(reader.hasNext()){
             readLine = reader.nextLine().split(";");
-            namesArray[index] = readLine[0] + readLine[1];  //save names in format [maker name] in the names array
+            namesArray[index] = readLine[0] + " " + readLine[1];  //save names in format [maker name] in the names array
             index++;
         }
         reader.close();
