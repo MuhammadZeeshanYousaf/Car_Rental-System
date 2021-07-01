@@ -128,7 +128,7 @@ public class UpdateCustomer extends javax.swing.JFrame {
         
         Person customerFound = null;
         try{
-            customerFound = new CustomerManagement().FindCustomer(cnic);
+            customerFound = new CustomerManagement().FindCustomer(cnic, true);
         } catch (IOException ex){
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Customers File Error", 2);
         }

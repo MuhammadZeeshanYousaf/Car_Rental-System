@@ -46,8 +46,6 @@ public class CarDetails extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         carDetails_jTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         searchByRegNo_btn.setBackground(new java.awt.Color(204, 204, 255));
@@ -154,7 +152,7 @@ public class CarDetails extends javax.swing.JFrame {
                 .addComponent(jButton11)
                 .addGap(27, 27, 27)
                 .addComponent(removeCar_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                 .addComponent(back)
                 .addGap(18, 18, 18)
                 .addComponent(logOut_btn)
@@ -202,8 +200,8 @@ public class CarDetails extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +241,7 @@ public class CarDetails extends javax.swing.JFrame {
         String carName = CarName_txtBox.getText();
         Car carFound = null;
         try {
-            carFound = new CarManagement().FindCar(carName, false);        //parameter false is passed because car is to find with name, if false then regNo must be passed
+            carFound = new CarManagement().FindCar(carName, false);        //parameter false is passed because car is to find with name, if true then regNo must be passed
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Cars File Error", 2);
         }

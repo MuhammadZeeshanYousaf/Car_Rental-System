@@ -5,9 +5,6 @@
  */
 package oop.finalproject;
 
-import java.io.IOException;
-import javax.swing.JOptionPane;
-import oop.classes.BookingManagement;
 
 /**
  *
@@ -214,7 +211,8 @@ public class BookDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void carRegNo_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carRegNo_btnActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_carRegNo_btnActionPerformed
 
     private void regNo_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regNo_txtBoxActionPerformed
@@ -226,7 +224,8 @@ public class BookDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void customerId_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerId_btnActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_customerId_btnActionPerformed
 
     private void customerCnic_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerCnic_txtBoxActionPerformed
@@ -243,6 +242,8 @@ public class BookDetails extends javax.swing.JFrame {
 
     private void logout_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_btnActionPerformed
         // TODO add your handling code here:
+                this.setVisible(false);
+        new LogginForm().setVisible(true);
     }//GEN-LAST:event_logout_btnActionPerformed
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed

@@ -110,8 +110,15 @@ public class CustomerManagement extends Person{
     }
     
     //returns customer
-    public Person FindCustomer(String Cnic)
+    public Person FindCustomer(String cnic_or_name, boolean isCnicPassed)
     {   
+        //if CNIC passed then we search CNIC number
+        //CNIC Index = 0;
+        //customer Name Index = 1;
+        
+        //if CNIC passed then we will use index = 0 and vice versa
+        final int storedIndex = (isCnicPassed)? 0 : 1;
+        
         //Array which will have all the customers file data 
         ArrayList<String> dataArr = new ArrayList<>();
         //read all the data from file
@@ -123,9 +130,9 @@ public class CustomerManagement extends Person{
         for(String line : dataArr)
         {
             String[] custString = line.split(";");
-            if(custString[0].equals(Cnic))
+            if(custString[storedIndex].equals(cnic_or_name))
             {
-                //Retreive car data and make Car
+                //Retreive customer data and make customer
                 return new Person(custString[0],custString[1],custString[2]);
             }
         }

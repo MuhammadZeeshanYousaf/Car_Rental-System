@@ -168,4 +168,31 @@ public class BookingManagement extends Booking{
         }
         return unbookingsArray;
     }
+    
+    //to get booked car name for specific customer, referenced in CustomerDetail.java
+    public String getBookedCarName(String cnic_or_name, boolean isCnicPassed)
+    {
+        //if CNIC passed then we search CNIC number
+        //CNIC Index = 0;
+        //customer Name Index = 1;
+        
+        //if CNIC passed then we will use index = 0 and vice versa
+        final int storedIndex = (isCnicPassed)? 0 : 1;
+        
+        //customerID+';'+customerName+';'+carName+';'+rentTime;
+        //get unbooked file
+        String bookedCar = "NULL";
+        String[] line;
+        
+        while (reader.hasNext()) {
+            line = reader.nextLine().split(";");
+            if(cnic_or_name.equalsIgnoreCase(line[storedIndex])){
+                bookedCar = line[2];
+                break;
+            }
+        }
+        
+        reader.close();
+        return bookedCar;
+    }
 }

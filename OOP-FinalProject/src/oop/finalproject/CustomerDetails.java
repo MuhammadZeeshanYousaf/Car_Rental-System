@@ -5,6 +5,14 @@
  */
 package oop.finalproject;
 
+import java.io.IOException;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import oop.classes.BookingManagement;
+import oop.classes.CustomerManagement;
+import oop.classes.Person;
+
 /**
  *
  * @author Hp
@@ -217,9 +225,36 @@ public class CustomerDetails extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private int serial = 0;
     private void searchByName_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByName_btnActionPerformed
-        
+        //Search Car by Name
+        String custName = searchName_txtBox.getText();
+        Person custFound = null;
+        try {
+            custFound = new CustomerManagement().FindCustomer(custName, false);        //parameter false is passed because customer is to find with name, if true then cnic must be passed
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Customers File Error", 2);
+        }
+        if(custFound != null){
+            BookingManagement bookings = null;
+            try {
+                 bookings = new BookingManagement();
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+            
+            String bookedCar_Name = bookings.getBookedCarName(custName, false);
+            String custBill = "-";
+            if(bookedCar_Name.equals("NULL"))
+                custBill = new Random().nextInt(10000)+"";
+            
+            String[] data = {++serial+"", new Random().nextInt(100)+"", custFound.getCnic(), custFound.getName()+"", custFound.getPhone(), bookedCar_Name, custBill};
+            DefaultTableModel tabelModel = (DefaultTableModel)cutomerDetails_jTable.getModel();
+            tabelModel.addRow(data);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Customer Not Found!");
+
     }//GEN-LAST:event_searchByName_btnActionPerformed
 
     private void searchName_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchName_txtBoxActionPerformed
@@ -227,7 +262,34 @@ public class CustomerDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_searchName_txtBoxActionPerformed
 
     private void searchCnic_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCnic_btnActionPerformed
-        // TODO add your handling code here:
+         //Search Car by cnic
+        String custCnic = searchCnic_txtBox.getText();
+        Person custFound = null;
+        try {
+            custFound = new CustomerManagement().FindCustomer(custCnic, true);        //parameter true is passed because customer is to find with cni, if false then name must be passed
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Customers File Error", 2);
+        }
+        if(custFound != null){
+            BookingManagement bookings = null;
+            try {
+                 bookings = new BookingManagement();
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+            
+            String bookedCar_Name = bookings.getBookedCarName(custCnic, true);
+            String custBill = "-";
+            if(bookedCar_Name.equals("NULL"))
+                custBill = new Random().nextInt(10000)+"";
+            
+            String[] data = {++serial+"", new Random().nextInt(100)+"", custFound.getCnic(), custFound.getName()+"", custFound.getPhone(), bookedCar_Name, custBill};
+            DefaultTableModel tabelModel = (DefaultTableModel)cutomerDetails_jTable.getModel();
+            tabelModel.addRow(data);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Customer Not Found!");
+        
     }//GEN-LAST:event_searchCnic_btnActionPerformed
 
     private void searchCnic_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCnic_txtBoxActionPerformed
@@ -241,17 +303,18 @@ public class CustomerDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+                this.setVisible(false);
+        new LogginForm().setVisible(true);
+
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        Form1 form = new Form1();
-        form.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -268,6 +331,12 @@ public class CustomerDetails extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    public static void main(String[] args)
+    {
+        CustomerDetails cust = new CustomerDetails();
+        cust.setVisible(true);
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable cutomerDetails_jTable;
