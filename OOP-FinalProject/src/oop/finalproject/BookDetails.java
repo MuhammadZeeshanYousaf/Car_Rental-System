@@ -5,6 +5,10 @@
  */
 package oop.finalproject;
 
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import oop.classes.BookingManagement;
+
 /**
  *
  * @author Hp
@@ -158,7 +162,7 @@ public class BookDetails extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(book_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(40, 40, 40)
                 .addComponent(unbook_btn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logout_btn)
@@ -230,7 +234,7 @@ public class BookDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_customerCnic_txtBoxActionPerformed
 
     private void unbook_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unbook_btnActionPerformed
-        // TODO add your handling code here:
+        new UnBook(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_unbook_btnActionPerformed
 
     private void book_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book_btnActionPerformed

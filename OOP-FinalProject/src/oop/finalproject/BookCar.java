@@ -6,8 +6,6 @@
 package oop.finalproject;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oop.classes.BookingManagement;
 import oop.classes.CarManagement;
@@ -27,7 +25,13 @@ public class BookCar extends javax.swing.JFrame {
         //populate combo boxes with available customer and car data
         this.populateComboBoxes();
     }
-
+    
+    public BookCar(String carName) {
+        initComponents();
+        //populate combo boxes with available customer and car data
+        this.populateComboBoxes();
+        carName_comboBox.setSelectedItem(carName);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,6 +51,7 @@ public class BookCar extends javax.swing.JFrame {
         cancel_btn = new javax.swing.JButton();
         bookNow_btn = new javax.swing.JButton();
         customerId_comboBox = new javax.swing.JComboBox<>();
+        unbook_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,10 +80,21 @@ public class BookCar extends javax.swing.JFrame {
             }
         });
 
+        unbook_btn.setText("UnBook Now");
+        unbook_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unbook_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(cancel_btn)
+                .addGap(73, 73, 73))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -93,16 +109,14 @@ public class BookCar extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(bookNow_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(unbook_btn))
                     .addComponent(custName_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(carName_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(customerId_comboBox, 0, 225, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 472, Short.MAX_VALUE)
-                .addComponent(bookNow_btn)
-                .addGap(46, 46, 46)
-                .addComponent(cancel_btn)
-                .addGap(73, 73, 73))
+                .addContainerGap(315, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,10 +135,12 @@ public class BookCar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(carName_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancel_btn)
-                    .addComponent(bookNow_btn))
+                    .addComponent(bookNow_btn)
+                    .addComponent(unbook_btn))
+                .addGap(38, 38, 38)
+                .addComponent(cancel_btn)
                 .addGap(23, 23, 23))
         );
 
@@ -170,7 +186,32 @@ public class BookCar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bookNow_btnActionPerformed
 
+    private void unbook_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unbook_btnActionPerformed
+        String customer_id = customerId_comboBox.getSelectedItem().toString();
+        String customer_name = custName_comboBox.getSelectedItem().toString();
+        String carName = carName_comboBox.getSelectedItem().toString();
+        
+        //Validator
+        if(customer_id.isEmpty()||customer_name.isEmpty()||carName.isEmpty())
+            JOptionPane.showMessageDialog(null, "You left any field empty!", "Invalid Input", 1);
+        else    //operation
+        {
+            BookingManagement bookingManage;    //Declaration
+            try {       //initialization
+                bookingManage = new BookingManagement(customer_id, customer_name, carName);
+                if(bookingManage.MakeBooking()){        //making booking
+                    //if booking succeded then show positive message
+                    JOptionPane.showMessageDialog(null, "Booking made Successfully!");
+                    this.setVisible(false);
+                }
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Bookings file Error", 1);
+            }
+        }
+    }//GEN-LAST:event_unbook_btnActionPerformed
+
     
+    //this function will be called in the constructore when car needs to be booked or unbook
     private void populateComboBoxes(){
         //declarations
         CustomerManagement custManage = null;
@@ -203,13 +244,6 @@ public class BookCar extends javax.swing.JFrame {
             }
         }
     }
-    public static void main(String[] args)
-    {
-        BookCar booking = new BookCar();
-        booking.setVisible(true);
-        //booking.populateComboBoxes();
-        
-    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -223,5 +257,6 @@ public class BookCar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton unbook_btn;
     // End of variables declaration//GEN-END:variables
 }

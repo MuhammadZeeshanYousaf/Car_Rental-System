@@ -44,7 +44,7 @@ public class Form1 extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         updateCar_btn = new javax.swing.JButton();
         removeCar_btn = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        viewBooked_btn = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -169,9 +169,19 @@ public class Form1 extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("View Booked Cars");
+        viewBooked_btn.setText("View Booked Cars");
+        viewBooked_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBooked_btnActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("View Unbooked Cars");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -183,7 +193,7 @@ public class Form1 extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(updateCar_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(removeCar_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewBooked_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -197,7 +207,7 @@ public class Form1 extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(removeCar_btn)
                 .addGap(39, 39, 39)
-                .addComponent(jButton5)
+                .addComponent(viewBooked_btn)
                 .addGap(40, 40, 40)
                 .addComponent(jButton6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -709,6 +719,13 @@ public class Form1 extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton18ActionPerformed
 
+    private void viewBooked_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBooked_btnActionPerformed
+        new UnBook(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_viewBooked_btnActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        new UnBook(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addOwner_Btn;
@@ -721,7 +738,6 @@ public class Form1 extends javax.swing.JFrame {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -754,5 +770,6 @@ public class Form1 extends javax.swing.JFrame {
     private javax.swing.JButton removeCar_btn;
     private javax.swing.JButton removeOwnerBtn;
     private javax.swing.JButton updateCar_btn;
+    private javax.swing.JButton viewBooked_btn;
     // End of variables declaration//GEN-END:variables
 }

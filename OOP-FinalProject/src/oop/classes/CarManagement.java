@@ -192,11 +192,10 @@ public class CarManagement extends Car{
     {
         String[] namesArray = new String[0x64];
         int index = 0;
-        String[] readLine;
         
+        //get all car names from cars.txt file
         while(reader.hasNext()){
-            readLine = reader.nextLine().split(";");
-            namesArray[index] = readLine[0] + " " + readLine[1];  //save names in format [maker name] in the names array
+             namesArray[index] = reader.nextLine().split(";")[1];   //save names in format [name] in the names array
             index++;
         }
         reader.close();

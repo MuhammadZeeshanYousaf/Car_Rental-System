@@ -41,7 +41,7 @@ public class CarDetails extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         logOut_btn = new javax.swing.JButton();
         back = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        removeCar_btn = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         carDetails_jTable = new javax.swing.JTable();
@@ -107,12 +107,12 @@ public class CarDetails extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(204, 204, 255));
-        jButton10.setForeground(new java.awt.Color(0, 0, 0));
-        jButton10.setText("Remove");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        removeCar_btn.setBackground(new java.awt.Color(204, 204, 255));
+        removeCar_btn.setForeground(new java.awt.Color(0, 0, 0));
+        removeCar_btn.setText("Remove");
+        removeCar_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                removeCar_btnActionPerformed(evt);
             }
         });
 
@@ -153,7 +153,7 @@ public class CarDetails extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jButton11)
                 .addGap(27, 27, 27)
-                .addComponent(jButton10)
+                .addComponent(removeCar_btn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addComponent(back)
                 .addGap(18, 18, 18)
@@ -191,7 +191,7 @@ public class CarDetails extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logOut_btn)
                     .addComponent(jButton6)
-                    .addComponent(jButton10)
+                    .addComponent(removeCar_btn)
                     .addComponent(jButton11)
                     .addComponent(back))
                 .addGap(14, 14, 14))
@@ -280,7 +280,7 @@ public class CarDetails extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void removeCar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCar_btnActionPerformed
         // TODO add your handling code here:
         String regNo = JOptionPane.showInputDialog(null,"Enter the Car Reg No to be Removed", "Remove Car", JOptionPane.QUESTION_MESSAGE);
         if(regNo.isEmpty())
@@ -294,12 +294,22 @@ public class CarDetails extends javax.swing.JFrame {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Cars file Error", 1);
         }
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_removeCar_btnActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showInputDialog(null,"Enter The Car Registeration No to be Updated", "Update Car", JOptionPane.QUESTION_MESSAGE);
-        
+
+        String regNo = JOptionPane.showInputDialog(null,"Enter The Car Reg No. To Be Updated", "Update Car", JOptionPane.QUESTION_MESSAGE);
+        Car carFound = null;
+        try {
+            carFound = new CarManagement().FindCar(regNo, true);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Cars File Error", 2);
+        }
+        if(carFound != null){
+            JOptionPane.showMessageDialog(null, "Car Updated");
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Car Not Found!");
     }//GEN-LAST:event_jButton11ActionPerformed
 
 
@@ -308,12 +318,12 @@ public class CarDetails extends javax.swing.JFrame {
     private javax.swing.JTextField CarRegNo_txtBox;
     private javax.swing.JButton back;
     private javax.swing.JTable carDetails_jTable;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logOut_btn;
+    private javax.swing.JButton removeCar_btn;
     private javax.swing.JButton searchByName_btn;
     private javax.swing.JButton searchByRegNo_btn;
     // End of variables declaration//GEN-END:variables

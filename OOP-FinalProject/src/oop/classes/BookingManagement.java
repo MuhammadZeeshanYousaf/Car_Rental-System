@@ -5,7 +5,10 @@
  */
 package oop.classes;
 
+import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -79,7 +82,7 @@ public class BookingManagement extends Booking{
         return false;
     }
     
-    public boolean UnBook(String carMaker, String carName) throws IOException
+    public boolean UnBook(String carName) throws IOException
     {
         //this method removes the data from bookings.txt and save data in unbooked.txt file
         
@@ -98,13 +101,12 @@ public class BookingManagement extends Booking{
         
         //now find the data of the booking which have car registeration number "regNo"
         int index = 0;
-        String carFullName = carMaker + " " + carName;
+        String carFullName = carName;
         for(String line : bookings_dataArr)
         {
             if(line.split(";")[2].equalsIgnoreCase(carFullName))
             {
                 //here we found the cnic
-                try {
                    //first remove the existing data from file
                     try (FileWriter makeFileEmpty = new FileWriter(bookingsFile, false)) {
                         makeFileEmpty.flush();
@@ -117,21 +119,53 @@ public class BookingManagement extends Booking{
                     pen.close();
                     
                     //Now write this data in unbooked.txt
-                    try(FileWriter writeUnbookedData = new FileWriter(unbookedFile)){
-                        writeUnbookedData.write(line + '\n');
+                    try(FileWriter writeUnbookedData = new FileWriter(unbookedFile, true)){
+                        writeUnbookedData.write(line + '\n');   //write the data of the car found, in unbooked.txt file
                         writeUnbookedData.close();
                     }
-                }
-                catch(IOException ex)
-                {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Booking cannot be unBooked!", 1);
-                    return false;
-                }
                return true;
             }
             index++;
         }
         JOptionPane.showMessageDialog(null, "Booking not found!");
         return false;
+    }
+    
+    //to get all current bookings
+    public String[] getAllBookedCarNames()
+    {
+        //customerID+';'+customerName+';'+carName+';'+rentTime;
+        String[] bookingsArray = new String[0x64];
+        int index = 0;
+        
+        while(reader.hasNext()){
+            bookingsArray[index] = reader.nextLine().split(";")[2];
+            index++;
+        }
+        reader.close();
+        return bookingsArray;
+    }
+    
+    //to get all current bookings
+    public String[] getAllUnbookedCarNames()
+    {
+        //customerID+';'+customerName+';'+carName+';'+rentTime;
+        //get unbooked file
+        String[] unbookingsArray = new String[0x64];
+        int index = 0;
+        //try to get access to unbooked file
+        unbookedFile = new File(unbookedFilePath);
+        try(Scanner unbookedReader = new Scanner(unbookedFile)){
+            while (unbookedReader.hasNext()) {
+                unbookingsArray[index] = reader.nextLine().split(";")[2];
+                index++;
+            }
+            unbookedReader.close();
+        }
+        catch(FileNotFoundException ex)
+        {
+            JOptionPane.showMessageDialog(null, "unbooked.txt File/Data does not Exist!", "FileNotFound", 1);
+        }
+        return unbookingsArray;
     }
 }
