@@ -227,7 +227,7 @@ public class CustomerDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private int serial = 0;
     private void searchByName_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByName_btnActionPerformed
-        //Search Car by Name
+        //Search Customer by Name
         String custName = searchName_txtBox.getText();
         Person custFound = null;
         try {
@@ -262,7 +262,7 @@ public class CustomerDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_searchName_txtBoxActionPerformed
 
     private void searchCnic_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCnic_btnActionPerformed
-         //Search Car by cnic
+         //Search Customer by cnic
         String custCnic = searchCnic_txtBox.getText();
         Person custFound = null;
         try {
@@ -279,7 +279,7 @@ public class CustomerDetails extends javax.swing.JFrame {
             }
             
             String bookedCar_Name = bookings.getBookedCarName(custCnic, true);
-            String custBill = "-";
+            String custBill = "---";
             if(bookedCar_Name.equals("NULL"))
                 custBill = new Random().nextInt(10000)+"";
             
@@ -303,7 +303,7 @@ public class CustomerDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        
+        JOptionPane.showMessageDialog(null, "Balance Cleared!");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed

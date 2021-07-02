@@ -5,6 +5,14 @@
  */
 package oop.finalproject;
 
+import java.io.IOException;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import oop.classes.BookingManagement;
+import oop.classes.CustomerManagement;
+import oop.classes.Person;
+
 
 /**
  *
@@ -30,8 +38,8 @@ public class BookDetails extends javax.swing.JFrame {
 
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        carRegNo_btn = new javax.swing.JButton();
-        regNo_txtBox = new javax.swing.JTextField();
+        carName_btn = new javax.swing.JButton();
+        carName_txtBox = new javax.swing.JTextField();
         customerId_btn = new javax.swing.JButton();
         customerCnic_txtBox = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -54,18 +62,18 @@ public class BookDetails extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        carRegNo_btn.setBackground(new java.awt.Color(204, 204, 255));
-        carRegNo_btn.setForeground(new java.awt.Color(0, 0, 0));
-        carRegNo_btn.setText("Search By Car RegNo:");
-        carRegNo_btn.addActionListener(new java.awt.event.ActionListener() {
+        carName_btn.setBackground(new java.awt.Color(204, 204, 255));
+        carName_btn.setForeground(new java.awt.Color(0, 0, 0));
+        carName_btn.setText("Search By Car Name:");
+        carName_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                carRegNo_btnActionPerformed(evt);
+                carName_btnActionPerformed(evt);
             }
         });
 
-        regNo_txtBox.addActionListener(new java.awt.event.ActionListener() {
+        carName_txtBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regNo_txtBoxActionPerformed(evt);
+                carName_txtBoxActionPerformed(evt);
             }
         });
 
@@ -148,12 +156,12 @@ public class BookDetails extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(carRegNo_btn)
+                            .addComponent(carName_btn)
                             .addComponent(customerId_btn))
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(customerCnic_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(regNo_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(carName_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -175,8 +183,8 @@ public class BookDetails extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(carRegNo_btn)
-                    .addComponent(regNo_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(carName_btn)
+                    .addComponent(carName_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(customerId_btn)
@@ -209,23 +217,53 @@ public class BookDetails extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void carRegNo_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carRegNo_btnActionPerformed
+    private int serial = 0;
+    private void carName_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carName_btnActionPerformed
+        String carName = carName_txtBox.getText();
+        String[] bookingFound = null;
+        try {
+            bookingFound = new BookingManagement().getBookingDetails(carName, true);        //parameter true is passed because booking is to find with carName, if false then cnic must be passed
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Bookings File Error", 2);
+        }
         
-        
-    }//GEN-LAST:event_carRegNo_btnActionPerformed
+        //if booking found for customer
+        if(bookingFound != null) {
+            String[] data = {++serial+"", bookingFound[0], bookingFound[1], bookingFound[2], bookingFound[3], "null"};
+            DefaultTableModel tabelModel = (DefaultTableModel) bookingDetails_jTable.getModel();
+            tabelModel.addRow(data);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Booking Not Found!");
+    }//GEN-LAST:event_carName_btnActionPerformed
 
-    private void regNo_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regNo_txtBoxActionPerformed
+    private void carName_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carName_txtBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_regNo_txtBoxActionPerformed
+    }//GEN-LAST:event_carName_txtBoxActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void customerId_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerId_btnActionPerformed
+        //Search Booking by cnic
+        String custCnic = customerCnic_txtBox.getText();
         
+        String[] bookingFound = null;
+        try {
+            bookingFound = new BookingManagement().getBookingDetails(custCnic, false);        //parameter false is passed because booking is to find with cnic, if true then carName must be passed
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Boookings File Error", 2);
+        }
         
+        //if booking found for customer
+        if(bookingFound != null) {
+            String[] data = {++serial+"", bookingFound[0], bookingFound[1], bookingFound[2], bookingFound[3], "null"};
+            DefaultTableModel tabelModel = (DefaultTableModel) bookingDetails_jTable.getModel();
+            tabelModel.addRow(data);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Booking Not Found!");
     }//GEN-LAST:event_customerId_btnActionPerformed
 
     private void customerCnic_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerCnic_txtBoxActionPerformed
@@ -259,14 +297,14 @@ public class BookDetails extends javax.swing.JFrame {
     private javax.swing.JButton back_btn;
     private javax.swing.JButton book_btn;
     private javax.swing.JTable bookingDetails_jTable;
-    private javax.swing.JButton carRegNo_btn;
+    private javax.swing.JButton carName_btn;
+    private javax.swing.JTextField carName_txtBox;
     private javax.swing.JTextField customerCnic_txtBox;
     private javax.swing.JButton customerId_btn;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logout_btn;
-    private javax.swing.JTextField regNo_txtBox;
     private javax.swing.JButton unbook_btn;
     // End of variables declaration//GEN-END:variables
 }

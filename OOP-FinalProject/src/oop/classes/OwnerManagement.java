@@ -107,4 +107,35 @@ public class OwnerManagement extends Person{
         JOptionPane.showMessageDialog(null, "Owner not found!");
         return false;
     }
+    
+    //owner returned
+    public Person FindOwner(String cnic_or_name, boolean isCnicPassed)
+    {   
+        //if CNIC passed then we search CNIC number
+        //CNIC Index = 0;
+        //owner Name Index = 1;
+        
+        //if CNIC passed then we will use index = 0 and vice versa
+        final int storedIndex = (isCnicPassed)? 0 : 1;
+        
+        //Array which will have all the owners file data 
+        ArrayList<String> dataArr = new ArrayList<>();
+        //read all the data from file
+        while(reader.hasNext()){
+            dataArr.add(reader.nextLine());
+        }
+        reader.close();
+        //traverse all from data
+        for(String line : dataArr)
+        {
+            String[] custString = line.split(";");
+            if(custString[storedIndex].equals(cnic_or_name))
+            {
+                //Retreive owner data and make owner object to return
+                return new Person(custString[0],custString[1],custString[2]);
+            }
+        }
+        return null;
+    }
+    
 }

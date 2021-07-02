@@ -5,12 +5,11 @@
  */
 package oop.classes;
 
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -73,6 +72,7 @@ public class BookingManagement extends Booking{
     {
         //This method write the car attributes into the file named "cars.txt"
         try {
+            super.setRentTime();
             pen.write(super.toString()+'\n');
             pen.close();
             return true;
@@ -120,7 +120,7 @@ public class BookingManagement extends Booking{
                     
                     //Now write this data in unbooked.txt
                     try(FileWriter writeUnbookedData = new FileWriter(unbookedFile, true)){
-                        writeUnbookedData.write(line + '\n');   //write the data of the car found, in unbooked.txt file
+                        writeUnbookedData.write(line + LocalDateTime.now() + '\n');   //write the data of the car found, in unbooked.txt file
                         writeUnbookedData.close();
                     }
                return true;
@@ -180,7 +180,7 @@ public class BookingManagement extends Booking{
         final int storedIndex = (isCnicPassed)? 0 : 1;
         
         //customerID+';'+customerName+';'+carName+';'+rentTime;
-        //get unbooked file
+        //get booked file
         String bookedCar = "NULL";
         String[] line;
         
@@ -195,4 +195,30 @@ public class BookingManagement extends Booking{
         reader.close();
         return bookedCar;
     }
+    
+    // to find the details of booking or unbooking from both files
+    public String[] getBookingDetails(String carName_or_custId, boolean isCarNamePassed)
+    {
+        //if carName passed then we search carName
+        //carName Index = 2;
+        //CustId Index = 0;
+        
+        //if CNIC passed then we will use index = 0 and vice versa
+        final int storedIndex = (isCarNamePassed)? 2 : 0;
+        
+        //customerID+';'+customerName+';'+carName+';'+rentTime;
+        //get Bookings File
+        String[] bookingDetails = null;
+        String[] line;
+        
+        while(reader.hasNext()){
+            line = reader.nextLine().split(";");
+            if(line[storedIndex].equalsIgnoreCase(carName_or_custId)) 
+                bookingDetails = line;
+        }
+        reader.close();
+        
+        return bookingDetails;
+    }
+    
 }

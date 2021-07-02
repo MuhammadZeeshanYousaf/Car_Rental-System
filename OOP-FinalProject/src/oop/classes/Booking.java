@@ -65,6 +65,6 @@ public class Booking {
     @Override
     public String toString()
     {
-        return customerID+';'+customerName+';'+carName+';'+rentTime+';'+returnTime;
+        return customerID+';'+customerName+';'+carName+';'+rentTime;
     }
 }

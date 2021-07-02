@@ -5,6 +5,12 @@
  */
 package oop.finalproject;
 
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import oop.classes.CustomerManagement;
+import oop.classes.OwnerManagement;
+import oop.classes.Person;
+
 /**
  *
  * @author Hp
@@ -29,7 +35,7 @@ public class UpdateOwner extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        ownerCnic_txtBox = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
 
@@ -42,10 +48,10 @@ public class UpdateOwner extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Enter ID To Be Updated");
 
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        ownerCnic_txtBox.setForeground(new java.awt.Color(0, 0, 0));
+        ownerCnic_txtBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                ownerCnic_txtBoxActionPerformed(evt);
             }
         });
 
@@ -81,7 +87,7 @@ public class UpdateOwner extends javax.swing.JFrame {
                 .addGap(97, 97, 97)
                 .addComponent(jLabel2)
                 .addGap(56, 56, 56)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ownerCnic_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 150, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -90,7 +96,7 @@ public class UpdateOwner extends javax.swing.JFrame {
                 .addGap(161, 161, 161)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ownerCnic_txtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
@@ -112,18 +118,30 @@ public class UpdateOwner extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void ownerCnic_txtBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerCnic_txtBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_ownerCnic_txtBoxActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        AddCar form = new AddCar();
-        form.setVisible(true);
+        String cnic = ownerCnic_txtBox.getText();
+        
+        Person ownerFound = null;
+        try{
+            ownerFound = new OwnerManagement().FindOwner(cnic, true);
+        } catch (IOException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Owners File Error", 2);
+        }
+        if(ownerFound != null){
+            JOptionPane.showMessageDialog(null, "Owner Updated");
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Owner Not Found!");
+        
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -133,6 +151,6 @@ public class UpdateOwner extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField ownerCnic_txtBox;
     // End of variables declaration//GEN-END:variables
 }
