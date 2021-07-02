@@ -120,7 +120,7 @@ public class BookingManagement extends Booking{
                     
                     //Now write this data in unbooked.txt
                     try(FileWriter writeUnbookedData = new FileWriter(unbookedFile, true)){
-                        writeUnbookedData.write(line + LocalDateTime.now() + '\n');   //write the data of the car found, in unbooked.txt file
+                        writeUnbookedData.write(line + ";" + LocalDateTime.now() + '\n');   //write the data of the car found, in unbooked.txt file
                         writeUnbookedData.close();
                     }
                return true;
@@ -155,16 +155,20 @@ public class BookingManagement extends Booking{
         int index = 0;
         //try to get access to unbooked file
         unbookedFile = new File(unbookedFilePath);
-        try(Scanner unbookedReader = new Scanner(unbookedFile)){
-            while (unbookedReader.hasNext()) {
-                unbookingsArray[index] = reader.nextLine().split(";")[2];
+        
+        Scanner unbookedReader;
+        try{
+            //now scan the unbooked file and read it and store the data in unbookingArray
+            unbookedReader = new Scanner(unbookedFile);
+            while(unbookedReader.hasNext()) {
+                unbookingsArray[index] = unbookedReader.nextLine().split(";")[2];
                 index++;
             }
             unbookedReader.close();
         }
         catch(FileNotFoundException ex)
         {
-            JOptionPane.showMessageDialog(null, "unbooked.txt File/Data does not Exist!", "FileNotFound", 1);
+            JOptionPane.showMessageDialog(null, "unbooked.txt File does not Exist!", "FileNotFound", 1);
         }
         return unbookingsArray;
     }

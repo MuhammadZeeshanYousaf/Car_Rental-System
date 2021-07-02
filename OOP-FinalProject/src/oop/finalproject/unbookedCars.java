@@ -5,6 +5,10 @@
  */
 package oop.finalproject;
 
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import oop.classes.BookingManagement;
+
 /**
  *
  * @author Zeeshan
@@ -17,6 +21,8 @@ public class unbookedCars extends javax.swing.JDialog {
     public unbookedCars(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //populate comboboxes with all unbooked cars
+        populateUnbookedCars();
     }
 
     /**
@@ -76,6 +82,30 @@ public class unbookedCars extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void populateUnbookedCars()
+    {
+        //declarations
+        BookingManagement bookingManage = null;
+        
+        //initializations with handeled exceptions
+        try {
+            bookingManage = new BookingManagement();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "UnBookings does not Found!", 2);
+        }
+        //if no exception occured then proceed next operation
+        if(bookingManage != null)
+        {
+            //get all current bookings 
+            String[] unbookingsArray = bookingManage.getAllUnbookedCarNames();
+            
+            //show all bookings into combo boxes
+            for (String unbookings_found : unbookingsArray) {
+                unbookedCars_comboBox.addItem(unbookings_found);
+            }
+        }
+    }
     private void bookCar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookCar_btnActionPerformed
         String car_name = unbookedCars_comboBox.getSelectedItem().toString();
         new BookCar(car_name).setVisible(true);

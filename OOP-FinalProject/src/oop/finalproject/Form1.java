@@ -724,7 +724,7 @@ public class Form1 extends javax.swing.JFrame {
     }//GEN-LAST:event_viewBooked_btnActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        new UnBook(this, rootPaneCheckingEnabled).setVisible(true);
+        new unbookedCars(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

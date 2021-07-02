@@ -118,7 +118,14 @@ public class UnBook extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void unBook_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unBook_btnActionPerformed
-        String car_name = bookedCars_comboBox.getSelectedItem().toString();
+        String car_name;
+        try{
+            car_name = bookedCars_comboBox.getSelectedItem().toString();
+        }catch(NullPointerException ex)
+        {
+            JOptionPane.showMessageDialog(null, "You select Empty Feild!");
+            return;
+        }
 
         //Validator
         if(car_name.isEmpty())
