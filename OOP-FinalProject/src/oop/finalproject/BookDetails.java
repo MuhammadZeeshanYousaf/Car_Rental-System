@@ -6,13 +6,9 @@
 package oop.finalproject;
 
 import java.io.IOException;
-import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import oop.classes.BookingManagement;
-import oop.classes.CustomerManagement;
-import oop.classes.Person;
-
 
 /**
  *
@@ -57,8 +53,6 @@ public class BookDetails extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 

@@ -40,8 +40,6 @@ public class UpdateCustomer extends javax.swing.JFrame {
         ok_btn = new javax.swing.JButton();
         cancel_btn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 

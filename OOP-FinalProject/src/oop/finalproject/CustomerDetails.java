@@ -49,8 +49,6 @@ public class CustomerDetails extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         searchByName_btn.setBackground(new java.awt.Color(204, 204, 255));
@@ -182,7 +180,7 @@ public class CustomerDetails extends javax.swing.JFrame {
                 .addComponent(jButton11)
                 .addGap(18, 18, 18)
                 .addComponent(jButton10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addComponent(jButton9)
                 .addGap(18, 18, 18)
                 .addComponent(jButton8)

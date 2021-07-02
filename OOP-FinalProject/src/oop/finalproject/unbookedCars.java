@@ -32,8 +32,6 @@ public class unbookedCars extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         bookCar_btn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
         unbookedCars_comboBox.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N

@@ -50,8 +50,6 @@ public class OwnerDetails extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         searchByName_btn.setBackground(new java.awt.Color(204, 204, 255));
